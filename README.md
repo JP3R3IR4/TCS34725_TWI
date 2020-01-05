@@ -1,2 +1,2 @@
-# I2C
-Develop a system that uses an I2C device
+# TCS34725_TWI
+Develop a system that uses an TWI device
