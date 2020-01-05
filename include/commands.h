@@ -6,7 +6,7 @@
 #include "register_set.h"
 
 uint8_t get_ID();
-uint16_t get_color(uint8_t color);
+uint16_t getColor(uint8_t color);
 void enable_RGBC();
 void power_ON();
 void setGain();

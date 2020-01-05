@@ -3,31 +3,49 @@
 #include "register_set.h"
 #include "commands.h"
 
+#define RED 3
+#define BLUE 4
+#define GREEN 5
+
+uint16_t clear_color, blue_color, green_color, red_color;
+
 void setup() {
 
-  Serial.begin(9600);
+	pinMode(OUTPUT, RED);
+	pinMode(OUTPUT, BLUE);
+	pinMode(OUTPUT, GREEN);
 
-  TWISetup();
+  	Serial.begin(9600);
+	Serial.print("SCL Frequency -> "); Serial.print(TWISetup()); Serial.println(" Hz");
+	Serial.println("---------------------------------");	
 
 	setGain();
 	setTime();
-  
+
+	/* Check if the device is connected */
+  	if (get_ID() != NUMBER_IDENTIFICATION) {
+  		Serial.println("Device is not connected!");
+  	} 
+	else {
+			
+		Serial.println("Device is connected!");
+		power_ON();
+		enable_RGBC();
+	}
+
 }
 
 void loop() {
 
-	/* Power On Sensor - From Sleep to Idle state */
-	power_ON();
+	clear_color = getColor(CDATA);
+	red_color = getColor(RDATA);
+	green_color = getColor(GDATA);
+	blue_color = getColor(BDATA);
 
-  /* Check if the device is connected */
-  if (get_ID() != NUMBER_IDENTIFICATION) {
-  		Serial.println("Device is not connected!");
-  } 
-	else {
-			Serial.println("Device is connected!");
+	delay(154);
 
-			enable_RGBC();
-			
-			Serial.println(getStatus());
-  }
+	analogWrite(RED, red_color>>8);
+	analogWrite(GREEN, green_color>>8);
+	analogWrite(BLUE, blue_color>>8);
+
 }

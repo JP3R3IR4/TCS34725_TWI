@@ -1,10 +1,15 @@
 #include "twi.h"
 
-void TWISetup(){
+float sclf;
+
+float TWISetup(){
     // Fscl = 333kHz  (max400kHz)  Fcpu = 16MHz //
     // Set I2C Bit Rate Register (16 bits) //
     TWBR |= 0b00010000;
     TWCR |= (1<<TWEN);
+
+    sclf = (float) CPU_F / (float) (16 + (2*TWBR));
+    return sclf;
 }
 
 void TWIStart() {

@@ -1,6 +1,6 @@
 #include "commands.h"
 
-uint16_t x, y;
+uint16_t x = 0;
 
 /* REGISTER FUNCTION: READ ONLY */
 uint8_t get_ID() {
@@ -14,19 +14,15 @@ uint8_t get_ID() {
 
 }
 
-uint16_t get_color(uint8_t color) {
-
-    x = 0;
-    y = 0;
+uint16_t getColor(uint8_t color) {
 
     TWIStart();
     TWIWrite(SLA_W);
     TWIWrite(COMMAND_BIT | color);
     TWIStart();
     TWIWrite(SLA_R);
-    x = TWIRead() << 8;
-    y = TWIRead();
-    x |= y;
+    x = (TWIRead() << 8);
+    x |= TWIRead();
 
     return x;
 }
@@ -42,6 +38,7 @@ void enable_RGBC() {
     TWIStart();
     TWIWrite(SLA_W);
     TWIWrite(AEN);
+
 }
 
 void power_ON() {
