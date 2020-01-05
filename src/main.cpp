@@ -18,7 +18,6 @@ void TWISetup(){
 }
 
 void TWIStart() {
-
   TWCR |= (1<<TWEN)|(1<<TWSTA)|(1<<TWINT);
   
   while (!(TWCR & (1<<TWINT)));
