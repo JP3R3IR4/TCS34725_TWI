@@ -26,8 +26,8 @@
 //#define INTEGRATION_DELAY 24
 //#define ATIME 0xD5 //101ms
 //#define INTEGRATION_DELAY 101
-#define ATIME 0xC0 //154ms 
-#define INTEGRATION_DELAY 154
+//#define ATIME 0xC0 //154ms 
+//#define INTEGRATION_DELAY 154
 #ifndef ATIME
     #define ATIME 0x00 //700ms
     #define INTEGRATION_DELAY 700

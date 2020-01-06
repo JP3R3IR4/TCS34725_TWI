@@ -26,8 +26,8 @@ uint16_t getColor(uint8_t color) {
     TWIWrite(COMMAND_BIT | color);
     TWIStart();
     TWIWrite(SLA_R);
-    /*x = (TWIRead() << 8);
-    x |= TWIRead();*/
+    x = (TWIRead_ACK() << 8);
+    x |= TWIRead_NACK();
     TWIStop();
 
     return x;
@@ -90,5 +90,5 @@ void getRawColors(uint16_t *c, uint16_t *r, uint16_t *g, uint16_t *b) {
 	*b = getColor(BDATA);
 
     delay(INTEGRATION_DELAY);
-
 }
+
