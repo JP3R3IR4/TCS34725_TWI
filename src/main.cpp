@@ -1,3 +1,9 @@
+/**
+ * @file main.cpp
+ * 
+ * @author Nuno Nogueira, 2020
+ * */
+
 #include <Arduino.h>
 #include "twi.h"
 #include "register_set.h"

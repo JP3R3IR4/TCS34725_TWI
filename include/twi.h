@@ -1,8 +1,19 @@
-#ifndef TWI_H_  /* Include guard */
+/**
+ * @file twi.cpp
+ * 
+ * @brief in this file are the main Two Wire Interfaces functions based 
+ * on the atmega328p datasheet and on the I2C protocol guide, required 
+ * to establish connection between the Arduino and the TCS34725 sensor
+ * 
+ * @author Nuno Nogueira, 2020
+ * */
+
+#ifndef TWI_H_
 #define TWI_H_
 
 #include <Arduino.h>
 
+/* TCS34725 ADDRESS + R/W bit */
 #define SLA_W 0b1010010
 #define SLA_R 0b1010011
 #define CPU_F 16000000
@@ -27,11 +38,37 @@
 /* ENABLE/DISABLE TWI DEBUG */
 #define DEBUG 
 
+/**
+ * Sets SCL Frequency and enables TWI.
+ * returns: SCL Frequency 
+ * */
 float TWISetup();
+
+/**
+ * Sends a Start Condition 
+ * */
 uint8_t TWIStart();
+
+/**
+ * Sends DATA and waits for ACK from slave.
+ * @param reg is stored in TWDR
+ * returns: TWSR (Status Code) or ERROR in case of error
+ * */
 uint8_t TWIWrite(uint8_t reg);
+
+/**
+ * Receives data and sends ACK to slave-transmitter.
+ * */
 uint8_t TWIRead_ACK();
+
+/**
+ * Receives data but does not send ACK to slave. It is used when it is received before ending communtion.
+ * */
 uint8_t TWIRead_NACK();
+
+/**
+ * Sends a STOP condition. Ends communication.
+ * */
 void TWIStop();
 
 #endif

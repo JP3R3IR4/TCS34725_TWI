@@ -1,3 +1,11 @@
+/**
+ * @file register_set.h
+ * 
+ * @brief list of register addresses based on TCS34725 datasheet.
+ * 
+ * @author Nuno Nogueira, 2020.
+ * */
+
 /* Register Set*/
 #define ENABLE_REGISTER 0x00
 #define TIMING_REGISTER 0x01

@@ -1,6 +1,6 @@
 #include "commands.h"
 
-/* REGISTER FUNCTION: READ ONLY */
+
 uint8_t getID() {
 
     uint8_t id = 0;
@@ -77,7 +77,6 @@ void setTime() {
 }
 
 void enableTCS34725() {
-    //powerON();
     enableRGBC();
     delay(INTEGRATION_DELAY);
 }
