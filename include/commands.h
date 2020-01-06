@@ -5,12 +5,13 @@
 #include "twi.h"
 #include "register_set.h"
 
-uint8_t get_ID();
+uint8_t getID();
 uint16_t getColor(uint8_t color);
-void enable_RGBC();
-void power_ON();
+void enableRGBC();
+void powerON();
 void setGain();
 void setTime();
-uint8_t getStatus();
+void enableTCS34725();
+void getRawColors(uint16_t *c, uint16_t *r, uint16_t *g, uint16_t *b);
 
 #endif

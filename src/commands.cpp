@@ -1,33 +1,39 @@
 #include "commands.h"
 
-uint16_t x = 0;
-
 /* REGISTER FUNCTION: READ ONLY */
-uint8_t get_ID() {
+uint8_t getID() {
+
+    uint8_t id = 0;
 
     TWIStart();
     TWIWrite(SLA_W);
-    TWIWrite(COMMAND_BIT | ID);
+    TWIWrite(COMMAND_BIT|ID);
     TWIStart();
     TWIWrite(SLA_R);
-    return TWIRead();
+    id = TWIRead_NACK();
+    TWIStop();
+
+    return id;
 
 }
 
 uint16_t getColor(uint8_t color) {
+
+    uint16_t x = 0; 
 
     TWIStart();
     TWIWrite(SLA_W);
     TWIWrite(COMMAND_BIT | color);
     TWIStart();
     TWIWrite(SLA_R);
-    x = (TWIRead() << 8);
-    x |= TWIRead();
+    /*x = (TWIRead() << 8);
+    x |= TWIRead();*/
+    TWIStop();
 
     return x;
 }
 
-void enable_RGBC() {
+void enableRGBC() {
 
     /* A minimum interval of 2.4ms must pass after PON is asserterd before RGBC can be initialized */
     delay(3);
@@ -35,20 +41,18 @@ void enable_RGBC() {
     TWIStart();
     TWIWrite(SLA_W);
     TWIWrite(COMMAND_BIT | ENABLE_REGISTER);
-    TWIStart();
-    TWIWrite(SLA_W);
-    TWIWrite(AEN);
+    TWIWrite(AEN|PON);
+    TWIStop();
 
 }
 
-void power_ON() {
+void powerON() {
 
     TWIStart();
     TWIWrite(SLA_W);
     TWIWrite(COMMAND_BIT | ENABLE_REGISTER);
-    TWIStart();
-    TWIWrite(SLA_W);
     TWIWrite(PON);
+    TWIStop();
 
 }
 
@@ -57,9 +61,8 @@ void setGain() {
     TWIStart();
     TWIWrite(SLA_W);
     TWIWrite(COMMAND_BIT | CONTROL_REGISTER);
-    TWIStart();
-    TWIWrite(SLA_W);
     TWIWrite(AGAIN);
+    TWIStop();
 
 }
 
@@ -68,18 +71,24 @@ void setTime() {
     TWIStart();
     TWIWrite(SLA_W);
     TWIWrite(COMMAND_BIT | TIMING_REGISTER);
-    TWIStart();
-    TWIWrite(SLA_W);
     TWIWrite(ATIME);
+    TWIStop();
 
 }
 
-uint8_t getStatus() {
+void enableTCS34725() {
+    //powerON();
+    enableRGBC();
+    delay(INTEGRATION_DELAY);
+}
 
-    TWIStart();
-    TWIWrite(SLA_W);
-    TWIWrite(COMMAND_BIT | STATUS);
-    TWIStart();
-    TWIWrite(SLA_R);
-    return TWIRead();
+void getRawColors(uint16_t *c, uint16_t *r, uint16_t *g, uint16_t *b) {
+
+    *c = getColor(CDATA);
+	*r = getColor(RDATA);
+	*g = getColor(GDATA);
+	*b = getColor(BDATA);
+
+    delay(INTEGRATION_DELAY);
+
 }

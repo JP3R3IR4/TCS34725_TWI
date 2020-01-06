@@ -17,20 +17,29 @@
 
 /* Enable Register */
 #define PON 0x01
-#define AEN 0x03
+#define AEN 0x02
 
 /* Timing register */
 //#define ATIME 0xFF //2.4ms
+//#define INTEGRATION_DELAY 3
 //#define ATIME 0xF6 //24ms
+//#define INTEGRATION_DELAY 24
 //#define ATIME 0xD5 //101ms
-#define ATIME 0xC0 //154ms
-//#define ATIME 0x00 //700ms
+//#define INTEGRATION_DELAY 101
+#define ATIME 0xC0 //154ms 
+#define INTEGRATION_DELAY 154
+#ifndef ATIME
+    #define ATIME 0x00 //700ms
+    #define INTEGRATION_DELAY 700
+#endif
 
 /* Control Register */
-#define AGAIN 0x00 //(1X)
 //#define AGAIN 0x01 //(4X)
 //#define AGAIN 0x02 //(16X)
 //#define AGAIN 0x03 //(60X)
+#ifndef AGAIN
+    #define AGAIN 0x00 //(1X)
+#endif
 
 /* ID Register */
 #define NUMBER_IDENTIFICATION 0x44

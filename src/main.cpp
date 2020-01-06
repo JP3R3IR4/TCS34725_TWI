@@ -16,36 +16,53 @@ void setup() {
 	pinMode(OUTPUT, GREEN);
 
   	Serial.begin(9600);
-	Serial.print("SCL Frequency -> "); Serial.print(TWISetup()); Serial.println(" Hz");
-	Serial.println("---------------------------------");	
+	Serial.print("|	  SCL Frequency -> "); Serial.print(TWISetup()); Serial.println(" Hz");
+	Serial.println("+--------------------------------------+");	
 
-	setGain();
-	setTime();
+	/* Force boot */
+	//powerON();
 
+	getID();
+	
 	/* Check if the device is connected */
-  	if (get_ID() != NUMBER_IDENTIFICATION) {
+  	/*while (getID() != NUMBER_IDENTIFICATION) {
   		Serial.println("Device is not connected!");
-  	} 
-	else {
+		delay(1000);
+  	} */
+
+	Serial.println("+--------------------------------------+");
+    Serial.println("|	Device is connected!");
+    Serial.println("+--------------------------------------+");
+	
+	//setGain();
+	Serial.println("+--------------------------------------+");
+    Serial.print("|	GAIN: ");
+	Serial.println("1X");
+    Serial.println("+--------------------------------------+");
+
+	//setTime();
+	Serial.println("+--------------------------------------+");
+    Serial.print("|	Integration time: ");
+	Serial.println(INTEGRATION_DELAY);
+    Serial.println("+--------------------------------------+");
 			
-		Serial.println("Device is connected!");
-		power_ON();
-		enable_RGBC();
-	}
+	enableTCS34725();
 
 }
 
 void loop() {
 
-	clear_color = getColor(CDATA);
-	red_color = getColor(RDATA);
-	green_color = getColor(GDATA);
-	blue_color = getColor(BDATA);
+	/*getRawColors(&clear_color, &red_color, &green_color, &blue_color);
 
-	delay(154);
+	Serial.print("[ "); Serial.print(clear_color>>8); Serial.print(" ], ");
+	Serial.print("[ "); Serial.print(red_color>>8); Serial.print(" ], ");
+	Serial.print("[ "); Serial.print(green_color>>8); Serial.print(" ], ");
+	Serial.print("[ "); Serial.print(blue_color>>8); Serial.println(" ] ");*/
 
-	analogWrite(RED, red_color>>8);
+	//delay(1000);
+
+	/*analogWrite(RED, red_color>>8);
 	analogWrite(GREEN, green_color>>8);
-	analogWrite(BLUE, blue_color>>8);
+	analogWrite(BLUE, blue_color>>8);*/
 
 }
