@@ -87,10 +87,10 @@ void loop() {
 	analogWrite(BLUE, gammatable[(int)b]);
 
 	#ifdef DEBUG
-		Serial.print("[ "); Serial.print(sum); Serial.print(" ], ");
-		Serial.print("[ "); Serial.print(gammatable[(int)r]); Serial.print(" ], ");
-		Serial.print("[ "); Serial.print(gammatable[(int)g]); Serial.print(" ], ");
-		Serial.print("[ "); Serial.print(gammatable[(int)b]); Serial.println(" ] ");
+		//Serial.print("[ "); Serial.print(sum); Serial.print(" ], ");
+		Serial.println(gammatable[(int)r]); 
+		Serial.println(gammatable[(int)g]);
+		Serial.println(gammatable[(int)b]); 
 	#endif
 
 }
