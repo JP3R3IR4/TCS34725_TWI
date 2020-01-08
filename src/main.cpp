@@ -88,8 +88,11 @@ void loop() {
 
 	#ifdef DEBUG
 		//Serial.print("[ "); Serial.print(sum); Serial.print(" ], ");
-		Serial.println(gammatable[(int)r]); 
-		Serial.println(gammatable[(int)g]);
+		Serial.print("R");
+		Serial.print(gammatable[(int)r]); 
+		Serial.print("G");
+		Serial.print(gammatable[(int)g]);
+		Serial.print("B");
 		Serial.println(gammatable[(int)b]); 
 	#endif
 
