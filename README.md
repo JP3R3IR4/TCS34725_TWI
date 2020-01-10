@@ -4,17 +4,17 @@ TCS34725_TWI is a project aiming to implement TWI protocol to comunicate between
 
 ## Contents
 
-### System Concept
+## System Concept
 
-### I2C and Two Wire Interface Fundamentals
+## I2C and Two Wire Interface Fundamentals
 
-#### Background
+### Background
 
 I2C is a serial communication protocol used to communicate between masters and slaves using a two-wire interface. Two Wire Interface was created by Atmel to avoid any legal troubles using this communication protocol created by Philips.
 
 Since this project uses a microcontroller from Atmel(atmega328p from an Arduino Nano), it should be implemented using **TWI**.
 
-#### TWI Functionality
+### TWI Functionality
 
 The two wire interface is defined by two wires: **SDA** (serial data) and **SCL** (serial clock) connected with a pull-up resistor to +Vdd. This allows to communicate between many devices, with their unique address, with only two wires.
 
@@ -38,7 +38,7 @@ In this example it is also notable that to change from master transmitter to mas
 
 ###### [Source](http://www.ti.com/lit/an/slva704/slva704.pdf)
 
-### TWI Implementation
+## TWI Implementation
 
 A lib folder was created with the TWI protocol implemented in C.
 
@@ -75,7 +75,7 @@ In case of reception of the last packet before the stop condition, a NACK must b
 
 A stop condition is created by setting TWI STOP Condition Bit (TWSTO) to 1.
 
-### TCS34725 
+## TCS34725 
 
 #### States
 
