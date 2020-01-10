@@ -97,12 +97,37 @@ The device is controlled by these intructions:
 So to get, for example the device ID, it is necessary to:
 - Send a Start Condition
 - Send the Slave Address and the W bit, informing the slave the incoming data is an instruction 
-- Send the instruction: COMMAND_BIT (0x80) + ID (0x12)
+- Send the instruction: COMMAND (0x80) + ID (0x12)
 - Send a repeated Start Condition in order to change to master receiver
 - Send again the Slave Address, but now with the R bit
 - Receive the ID
-- Send a stop condition
+- Send a Stop Condition
 
+The reception of the device ID guarantees that the slave is connected to master and the connection is well established.
+
+#### RGB
+
+Clear, red, green, and blue data is stored as 16-bit values. So, the master should *read* twice to get a proper color value:
+- Send a Start Condition
+- Send the Slave Address and the W bit, informing the slave the incoming data is an instruction 
+- Send the instruction: COMMAND (0x80) + COLOR (CDATA, RDATA, GDATA or BDATA)
+- Send a repeated Start Condition in order to change to master receiver
+- Send again the Slave Address, but now with the R bit
+- Receive the first 8 bits
+- Receive the last 8 bits
+- Send a Stop Condition
+
+#### Integration Time and Gain
+
+The ADCs of the sensor is controlled by two variables: integration time and gain. 
+The integration time controls the RGBC Timing Register and the number of the cycles. The gain controls the sensor light sensitivity.
+
+Two set these two, the process is similar. For example, to set gain:
+- Send a Start Condition
+- Send the Slave Address and the W bit, informing the slave the incoming data is an instruction 
+- Send the instruction: COMMAND (0x80) + CONTROL_REGISTER (0x0F)
+- Send the gain value: AGAIN (00x0 for 1x Gain)
+- Send a Stop Condition
 
 ### Graphical User Interface
 
