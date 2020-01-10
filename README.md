@@ -88,7 +88,21 @@ To start reading RGB values, the sensor must enter the RGBC state by enable AEN.
 
 Between the Idle state and the RGBC state the device needs a 2.4ms delay as stated on datasheet. And between each reading, the RGBC takes 2.4ms to 700ms.
 
-#### 
+#### Register Set
+
+The device is controlled by these intructions:
+
+<img width="1010" alt="Captura de ecrã 2020-01-10, às 16 56 20" src="https://user-images.githubusercontent.com/38976366/72171115-24152f80-33ca-11ea-8ffb-cb6c5c723807.png">
+
+So to get, for example the device ID, it is necessary to:
+- Send a Start Condition
+- Send the Slave Address and the W bit, informing the slave the incoming data is an instruction 
+- Send the instruction: COMMAND_BIT (0x80) + ID (0x12)
+- Send a repeated Start Condition in order to change to master receiver
+- Send again the Slave Address, but now with the R bit
+- Receive the ID
+- Send a stop condition
+
 
 ### Graphical User Interface
 
