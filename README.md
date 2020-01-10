@@ -6,6 +6,8 @@ TCS34725_TWI is a project aiming to implement TWI protocol to comunicate between
 
 ## System Concept
 
+![twi_arduino](https://user-images.githubusercontent.com/38976366/72174701-3d21de80-33d2-11ea-82a3-7b6193de7c69.png)
+
 ## I2C and Two Wire Interface Fundamentals
 
 ### Background
@@ -144,4 +146,9 @@ python3 guy.py
 
 #### Schematic
 
+<img width="632" alt="Captura de ecrã 2020-01-07, às 20 35 31" src="https://user-images.githubusercontent.com/38976366/72174754-5cb90700-33d2-11ea-8638-a22215ea50fc.png">
+
 #### PCB Design
+
+<img width="342" alt="Captura de ecrã 2020-01-07, às 20 36 50" src="https://user-images.githubusercontent.com/38976366/72174794-6fcbd700-33d2-11ea-8acc-e04b1f0b840b.png">
+
