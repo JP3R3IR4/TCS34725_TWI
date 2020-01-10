@@ -75,9 +75,20 @@ In case of reception of the last packet before the stop condition, a NACK must b
 
 A stop condition is created by setting TWI STOP Condition Bit (TWSTO) to 1.
 
-### TCS34725 States
+### TCS34725 
 
+#### States
 
+The Sensor is divided into 4 states. The Sensor is on a Sleep state until it receives a TWI operation start and changes to Idle state (PON register set to 1).
+
+<img width="317" alt="Captura de ecrã 2020-01-10, às 16 17 20" src="https://user-images.githubusercontent.com/38976366/72168278-bca8b100-33c4-11ea-8104-646cf1b72163.png">
+
+It is not capable of *reading colors* before changing to RGBC state.
+To start reading RGB values, the sensor must enter the RGBC state by enable AEN.
+
+Between the Idle state and the RGBC state the device needs a 2.4ms delay as stated on datasheet. And between each reading, the RGBC takes 2.4ms to 700ms.
+
+#### 
 
 ### Graphical User Interface
 
