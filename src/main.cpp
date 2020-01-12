@@ -58,7 +58,7 @@ void setup() {
 	setGain();
 	Serial.println("+--------------------------------------+");
     Serial.print("|	GAIN: ");
-	Serial.println("1X");
+	Serial.println(GAIN);
     Serial.println("+--------------------------------------+");
 
 	setTime();
@@ -87,7 +87,6 @@ void loop() {
 	analogWrite(BLUE, gammatable[(int)b]);
 
 	#ifdef DEBUG
-		//Serial.print("[ "); Serial.print(sum); Serial.print(" ], ");
 		Serial.print(gammatable[(int)r]); 
 		Serial.print(" ");
 		Serial.print(gammatable[(int)g]);

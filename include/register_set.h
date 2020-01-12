@@ -43,9 +43,13 @@
 
 /* Control Register */
 //#define AGAIN 0x01 //(4X)
+//#define GAIN 0x04
 //#define AGAIN 0x02 //(16X)
+//#define GAIN 0x10
 //#define AGAIN 0x03 //(60X)
+//#define GAIN 0x3C
 #ifndef AGAIN
+    #define GAIN 0x01
     #define AGAIN 0x00 //(1X)
 #endif
 

@@ -26,8 +26,8 @@ uint16_t getColor(uint8_t color) {
     TWIWrite(COMMAND_BIT | color);
     TWIStart();
     TWIWrite(SLA_R);
-    x = (TWIRead_ACK() << 8);
-    x |= TWIRead_NACK();
+    x = TWIRead_ACK();
+    x |= (TWIRead_NACK() << 8);
     TWIStop();
 
     return x;
