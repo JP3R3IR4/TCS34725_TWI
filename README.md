@@ -135,6 +135,9 @@ Two set these two, the process is similar. For example, to set gain:
 
 A GUI was created in Python (based on [PyQt5](https://riverbankcomputing.com/software/pyqt/intro)) to simulate a RGB LED behavior.
 The program receives RGB values from serial port, prints it and converts it into a color.
+
+<img width="342" alt="Captura de ecrã 2020-01-12, às 17 17 18" src="https://user-images.githubusercontent.com/38976366/72225796-7c426200-3581-11ea-9a8c-9ba13ac68d6c.png">
+
 To open the GUI, run:
 
 ```
