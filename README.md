@@ -141,7 +141,7 @@ The program receives RGB values from serial port, prints it and converts it into
 To open the GUI, run:
 
 ```
-python3 guy.py
+python3 gui.py
 ```
 
 
